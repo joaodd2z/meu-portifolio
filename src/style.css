@@ -1,0 +1,96 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #1c1c1c; /* Fundo escuro para um visual mais tech */
+    color: #e0e0e0; /* Texto em um tom claro para melhor legibilidade */
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: rgba(30, 30, 30, 0.8);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav a {
+    color: #64ffda; /* Azul claro para links */
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+header h1 {
+    color: #64ffda; /* Azul claro */
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(100, 255, 218, 0.7);
+}
+
+.skills-animation {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.skill {
+    margin: 10px 0;
+}
+
+.progress-bar {
+    background-color: #444; /* Fundo escuro para a barra */
+    border-radius: 5px;
+    overflow: hidden;
+    height: 20px;
+    width: 100%;
+}
+
+.progress {
+    background-color: #64ffda; /* Cor da barra de progresso */
+    height: 100%;
+    transition: width 1s ease; /* Animação suave */
+    border-radius: 5px;
+}
+
+.section {
+    position: relative;
+    padding: 20px;
+    margin: 20px;
+    border-radius: 10px;
+    background-color: #2a2a2a; /* Fundo das seções */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Sombra sutil */
+}
+
+.section h3 {
+    color: #64ffda; /* Azul claro para os títulos das seções */
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    border-radius: 10px;
+    border: 2px solid #64ffda; /* Contorno azul claro */
+    z-index: -1; /* Para que fique atrás do conteúdo */
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(30, 30, 30, 0.8);
+    color: #ffffff;
+}
+
+footer p {
+    margin: 0;
+}
