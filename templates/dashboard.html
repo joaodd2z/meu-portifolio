@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Biblioteca do Jasão{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h2 class="mb-4">Dashboard</h2>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <h5 class="card-title">Total de Livros</h5>
+                <p class="card-text display-4">{{ books|length }}</p>
+                <i class="fas fa-book fa-2x position-absolute top-50 end-0 translate-middle-y opacity-25"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <h5 class="card-title">Disponíveis</h5>
+                <p class="card-text display-4">{{ books|selectattr('status', 'equalto', 'disponível')|list|length }}</p>
+                <i class="fas fa-check-circle fa-2x position-absolute top-50 end-0 translate-middle-y opacity-25"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <h5 class="card-title">Emprestados</h5>
+                <p class="card-text display-4">{{ books|selectattr('status', 'equalto', 'emprestado')|list|length }}</p>
+                <i class="fas fa-exchange-alt fa-2x position-absolute top-50 end-0 translate-middle-y opacity-25"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-4">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <h5 class="card-title">Reservados</h5>
+                <p class="card-text display-4">{{ books|selectattr('status', 'equalto', 'reservado')|list|length }}</p>
+                <i class="fas fa-clock fa-2x position-absolute top-50 end-0 translate-middle-y opacity-25"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header bg-white d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Meus Livros</h5>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addBookModal">
+                    <i class="fas fa-plus me-2"></i>Adicionar Livro
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Título</th>
+                                <th>Autor</th>
+                                <th>ISBN</th>
+                                <th>Status</th>
+                                <th>Data de Cadastro</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for book in books %}
+                            <tr>
+                                <td>{{ book.title }}</td>
+                                <td>{{ book.author }}</td>
+                                <td>{{ book.isbn }}</td>
+                                <td>
+                                    <span class="badge bg-{{ 'success' if book.status == 'disponível' else 'warning' if book.status == 'emprestado' else 'info' }}">
+                                        {{ book.status }}
+                                    </span>
+                                </td>
+                                <td>{{ book.created_at.strftime('%d/%m/%Y') }}</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button class="btn btn-sm btn-outline-primary" title="Editar">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-success" title="QR Code">
+                                            <i class="fas fa-qrcode"></i>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" title="Excluir">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Adicionar Livro -->
+<div class="modal fade" id="addBookModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Adicionar Novo Livro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addBookForm">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Autor</label>
+                        <input type="text" class="form-control" id="author" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="isbn" class="form-label">ISBN</label>
+                        <input type="text" class="form-control" id="isbn" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="submitAddBook()">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function submitAddBook() {
+    // Implementar lógica de adição de livro
+    const modal = bootstrap.Modal.getInstance(document.getElementById('addBookModal'));
+    modal.hide();
+}
+</script>
+{% endblock %} 

@@ -1,0 +1,126 @@
+{% extends "base.html" %}
+
+{% block title %}Início - Biblioteca do Jasão{% endblock %}
+
+{% block content %}
+<div class="row align-items-center min-vh-75">
+    <div class="col-md-6">
+        <h1 class="display-4 fw-bold mb-4">Bem-vindo à Biblioteca do Jasão</h1>
+        <p class="lead mb-4">Seu repositório digital de conhecimento e inovação. Organize seus estudos, projetos e ideias em um só lugar.</p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('dashboard') }}" class="btn btn-primary btn-lg px-4 me-md-2">
+                    <i class="fas fa-tachometer-alt me-2"></i>Dashboard
+                </a>
+            {% else %}
+                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg px-4 me-md-2">
+                    <i class="fas fa-user-plus me-2"></i>Começar Agora
+                </a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-primary btn-lg px-4">
+                    <i class="fas fa-sign-in-alt me-2"></i>Login
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-6">
+        <img src="https://via.placeholder.com/600x400" alt="Biblioteca do Jasão" class="img-fluid rounded shadow">
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Sobre o Desenvolvedor</h2>
+    </div>
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-body text-center">
+                <h3 class="card-title">João Lucas de Oliveira</h3>
+                <p class="card-text">Desenvolvedor Full Stack apaixonado por criar soluções inovadoras e eficientes. Especializado em desenvolvimento Python, com foco em aplicações web robustas e escaláveis.</p>
+                <div class="d-flex justify-content-center gap-3 mt-3">
+                    <a href="mailto:jl.lucas.oliveira@hotmail.com" class="btn btn-outline-primary">
+                        <i class="fas fa-envelope me-2"></i>Email
+                    </a>
+                    <a href="https://wa.me/5533999516555" class="btn btn-outline-success" target="_blank">
+                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Funcionalidades Principais</h2>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-book fa-3x mb-3 text-primary"></i>
+                <h3 class="card-title h4">Gerenciamento de Livros</h3>
+                <p class="card-text">Cadastre, organize e controle seu acervo com facilidade.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-qrcode fa-3x mb-3 text-primary"></i>
+                <h3 class="card-title h4">QR Code</h3>
+                <p class="card-text">Acesso rápido às informações através de códigos QR.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-bar fa-3x mb-3 text-primary"></i>
+                <h3 class="card-title h4">Estatísticas</h3>
+                <p class="card-text">Acompanhe o desenvolvimento do seu acervo com relatórios detalhados.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <h2 class="text-center mb-4">Por que escolher a Biblioteca do Jasão?</h2>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="d-flex align-items-start">
+            <i class="fas fa-check-circle text-success fa-2x me-3"></i>
+            <div>
+                <h4 class="h5">Interface Intuitiva</h4>
+                <p>Design moderno e fácil de usar, permitindo que você foque no que realmente importa.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="d-flex align-items-start">
+            <i class="fas fa-shield-alt text-success fa-2x me-3"></i>
+            <div>
+                <h4 class="h5">Segurança Garantida</h4>
+                <p>Seus dados estão protegidos com as mais modernas práticas de segurança.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="d-flex align-items-start">
+            <i class="fas fa-sync text-success fa-2x me-3"></i>
+            <div>
+                <h4 class="h5">Sincronização Automática</h4>
+                <p>Seus dados são sincronizados automaticamente em todos os seus dispositivos.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 mb-4">
+        <div class="d-flex align-items-start">
+            <i class="fas fa-mobile-alt text-success fa-2x me-3"></i>
+            <div>
+                <h4 class="h5">Totalmente Responsivo</h4>
+                <p>Acesse sua biblioteca de qualquer dispositivo, em qualquer lugar.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,186 @@
+.rpg-container {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+                url('../img/rpg-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.character-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 20px auto;
+    border: 8px solid #ffd700;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    transition: all 0.5s ease;
+}
+
+.character-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+}
+
+.character-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+.character-container:hover .character-image {
+    transform: scale(1.1);
+}
+
+.dialogue-box {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 3px solid #ffd700;
+    border-radius: 15px;
+    padding: 20px;
+    color: white;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    line-height: 1.8;
+    text-align: center;
+    margin-top: 30px;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.dialogue-box.show {
+    opacity: 1;
+    transform: translateY(-10px);
+}
+
+.dialogue-box a {
+    color: #ffd700;
+    text-decoration: none;
+    padding: 2px 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.dialogue-box a:hover {
+    color: #000;
+    background: #ffd700;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.option-button {
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid #ffd700;
+    color: #ffd700;
+    padding: 15px 25px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.option-button:hover {
+    background: rgba(255, 215, 0, 0.4);
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.typing-effect {
+    overflow: hidden;
+    border-right: 2px solid #ffd700;
+    white-space: pre-wrap;
+    margin: 0 auto;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #ffd700 }
+}
+
+.character-name {
+    color: #ffd700;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 28px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    margin-bottom: 20px;
+    text-align: center;
+    opacity: 0;
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Efeitos de partículas */
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ffd700;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes float {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateY(-20px) rotate(180deg); opacity: 0.3; }
+    100% { transform: translateY(0) rotate(360deg); opacity: 0.6; }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .dialogue-box {
+        width: 95%;
+        font-size: 12px;
+        padding: 15px;
+    }
+
+    .character-container {
+        width: 250px;
+        height: 250px;
+    }
+
+    .option-button {
+        font-size: 10px;
+        padding: 10px 15px;
+    }
+
+    .character-name {
+        font-size: 24px;
+    }
+} 

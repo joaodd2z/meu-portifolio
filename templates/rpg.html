@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="rpg-container">
+    <div class="character-name">João Lucas</div>
+    
+    <div class="character-container">
+        <img src="{{ url_for('static', filename='img/character.png') }}" alt="João Lucas" class="character-image">
+    </div>
+
+    <div class="dialogue-box" id="dialogueBox">
+        <div class="typing-effect" id="dialogueText"></div>
+        <div class="options-container" id="optionsContainer"></div>
+    </div>
+</div>
+
+<script>
+const dialogues = {
+    greeting: {
+        text: "Olá! Meu nome é João Lucas, um desenvolvedor Full Stack apaixonado por tecnologia e inovação. Como posso ajudar você hoje?",
+        options: [
+            { text: "Me conte sobre sua jornada", next: "journey" },
+            { text: "Quais são suas habilidades?", next: "skills" },
+            { text: "Fale sobre seus projetos", next: "projects" },
+            { text: "Como posso entrar em contato?", next: "contact" }
+        ]
+    },
+    journey: {
+        text: "Sou um desenvolvedor Full Stack apaixonado por tecnologia e inovação. Minha jornada começou com Python, onde desenvolvi uma forte base em programação e lógica. Atualmente, estou focado em expandir meus conhecimentos em desenvolvimento web, trabalhando com React no frontend e Python com FastAPI no backend. Tenho experiência com bancos de dados SQL e estou sempre buscando aprender novas tecnologias e melhores práticas de desenvolvimento.",
+        options: [
+            { text: "Quais são suas principais habilidades?", next: "skills" },
+            { text: "Me conte sobre seus projetos", next: "projects" },
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    skills: {
+        text: "Minhas principais habilidades incluem:\n\n🐍 Python (90%)\n⚡ FastAPI (85%)\n📊 SQL (80%)\n⚛️ React (75%)\n📘 TypeScript (70%)\n▲ Next.js (75%)\n📦 Git (85%)\n🐳 Docker (70%)\n\nEstou sempre me atualizando e aprendendo novas tecnologias!",
+        options: [
+            { text: "Como você aplica essas habilidades?", next: "projects" },
+            { text: "Como você se mantém atualizado?", next: "learning" },
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    projects: {
+        text: "Alguns dos meus principais projetos:\n\n1. Sistema de Gerenciamento de Tarefas\n• Full-stack com FastAPI e React\n• Autenticação JWT\n• PostgreSQL e Tailwind CSS\n\n2. API de Análise de Dados\n• Python com FastAPI\n• Processamento com Pandas\n• Cache com Redis\n\n3. Dashboard Interativo\n• React com TypeScript\n• D3.js para visualizações\n• Material-UI",
+        options: [
+            { text: "Como você planeja seus projetos?", next: "planning" },
+            { text: "Quais tecnologias você mais gosta?", next: "tech_stack" },
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    contact: {
+        text: "Ficarei feliz em conversar mais! Você pode me contatar através de:\n\n📱 Telefone: (33) 99951-6555\n📧 Email: jl.lucas.oliveira@hotmail.com\n📍 Localização: Minas Gerais\n\nRedes Sociais:\n🔗 LinkedIn: <a href='https://www.linkedin.com/in/joão-lucas-de-oliveira-4973b027b/' target='_blank'>João Lucas</a>\n💻 GitHub: <a href='https://github.com/joaodd2z' target='_blank'>@joaodd2z</a>\n📸 Instagram: <a href='https://www.instagram.com/1joaoae/' target='_blank'>@1joaoae</a>",
+        options: [
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    learning: {
+        text: "Mantenho-me atualizado através de:\n• Desenvolvimento constante de projetos pessoais\n• Cursos e documentações técnicas\n• Participação em comunidades de desenvolvedores\n• Acompanhamento das últimas tendências em tecnologia",
+        options: [
+            { text: "Quais são seus próximos objetivos?", next: "goals" },
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    planning: {
+        text: "Minha abordagem para projetos inclui:\n• Análise detalhada de requisitos\n• Escolha das melhores tecnologias para cada caso\n• Desenvolvimento iterativo e testes contínuos\n• Documentação clara e organizada\n• Foco em código limpo e manutenível",
+        options: [
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    tech_stack: {
+        text: "Minha stack favorita atualmente é:\n• Backend: Python com FastAPI\n• Frontend: React com TypeScript\n• Banco de Dados: PostgreSQL\n• Cache: Redis\n• Containerização: Docker\n• Estilização: Tailwind CSS",
+        options: [
+            { text: "Por que você escolheu essas tecnologias?", next: "tech_choice" },
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    tech_choice: {
+        text: "Escolhi essas tecnologias por:\n• Alta performance e escalabilidade\n• Forte tipagem e segurança\n• Excelente documentação e comunidade\n• Facilidade de manutenção\n• Produtividade no desenvolvimento",
+        options: [
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    },
+    goals: {
+        text: "Meus objetivos incluem:\n• Aprofundar conhecimentos em arquitetura de software\n• Explorar mais sobre IA e Machine Learning\n• Contribuir para projetos open source\n• Compartilhar conhecimento com a comunidade",
+        options: [
+            { text: "Voltar ao início", next: "greeting" }
+        ]
+    }
+};
+
+let currentDialogue = 'greeting';
+const dialogueBox = document.getElementById('dialogueBox');
+const dialogueText = document.getElementById('dialogueText');
+const optionsContainer = document.getElementById('optionsContainer');
+
+function typeText(text, callback) {
+    let i = 0;
+    dialogueText.innerHTML = '';
+    
+    function type() {
+        if (i < text.length) {
+            dialogueText.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 30);
+        } else {
+            callback();
+        }
+    }
+    
+    type();
+}
+
+function showOptions(options) {
+    optionsContainer.innerHTML = '';
+    options.forEach(option => {
+        const button = document.createElement('button');
+        button.className = 'option-button';
+        button.textContent = option.text;
+        button.onclick = () => {
+            currentDialogue = option.next;
+            updateDialogue();
+        };
+        optionsContainer.appendChild(button);
+    });
+}
+
+function updateDialogue() {
+    const dialogue = dialogues[currentDialogue];
+    dialogueBox.classList.remove('show');
+    
+    setTimeout(() => {
+        typeText(dialogue.text, () => {
+            dialogueBox.classList.add('show');
+            showOptions(dialogue.options);
+        });
+    }, 300);
+}
+
+// Iniciar o diálogo
+setTimeout(() => {
+    updateDialogue();
+}, 1000);
+
+// Adicionar efeito de partículas
+function createParticle() {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    document.querySelector('.rpg-container').appendChild(particle);
+    
+    setTimeout(() => {
+        particle.remove();
+    }, 3000);
+}
+
+setInterval(createParticle, 500);
+</script>
+
+<style>
+.dialogue-box a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.dialogue-box a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px #ffd700;
+}
+</style>
+{% endblock %} 
