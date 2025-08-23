@@ -1,6 +1,6 @@
-# Biblioteca do Jasão
+# AQUI ANEXO MEU PORTFÓLIO, DE MANEIRA INTERATIVA E NÃO ORIGINAL PARA ENVIAR AO PRESTAR MEU SERVIÇO, UTILIZO-O DE MANEIRA TEMPORÁRIA PARA QUE EU MELHORE CONSTANTEMENTE ATÉ SE TORNAR O PRINCIPAL
 
-Um sistema inovador para gerenciamento de biblioteca pessoal, desenvolvido com Python Flask e MySQL.
+Um sistema inovador para gerenciamento de biblioteca pessoal, desenvolvido com HTML,CSS,JS, umas partes em python e MySQL (mas para correr do Workbench o backend foi migrado para o firebase, aonde atualmente prefiro alocar meus projetos).
 
 ## Sobre o Desenvolvedor
 
@@ -11,20 +11,12 @@ Um sistema inovador para gerenciamento de biblioteca pessoal, desenvolvido com P
 
 ## Funcionalidades
 
-- Gerenciamento de livros (cadastro, edição, exclusão)
-- Geração de QR Code para acesso rápido
-- Controle de empréstimos e reservas
-- Dashboard com estatísticas
-- Interface responsiva e moderna
-- Sistema de autenticação seguro
+Meu portfólio desenvolvido com o intuito ta interatividade de RPG ser uma inovação em meu portfólio, particulamente esse não é meu portfólio original, e sim uma interatividade visual 
+que irei dar updates constantes ao longo de vários anos até o êxito e inovações em algo simples como um portfólio! 
 
-## Requisitos
 
-- Python 3.8 ou superior
-- MySQL Server
-- pip (gerenciador de pacotes Python)
 
-## Instalação
+## Instalação (não precisa) v
 
 1. Clone o repositório:
 ```bash
@@ -56,7 +48,8 @@ flask db init
 flask db migrate
 flask db upgrade
 ```
-
+já disponibilizado no domínio do vercel para não ter esse processo de uso abaixo: 
+(não precisa) v
 ## Uso
 
 1. Inicie o servidor:
@@ -88,14 +81,6 @@ biblioteca-jasao/
     └── img/
 ```
 
-## Contribuição
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
 ## Licença
 
 Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
@@ -104,6 +89,4 @@ Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICE
 
 - **Email:** jl.lucas.oliveira@hotmail.com
 - **WhatsApp:** (33) 99951-6555
-- **Localização:** Minas Gerais
-
-Link do Projeto: [https://github.com/joaolucas/biblioteca-jasao](https://github.com/joaolucas/biblioteca-jasao) 
+- **Localização:** Minas Gerais 
