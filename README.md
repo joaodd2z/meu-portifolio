@@ -1,6 +1,6 @@
 # AQUI ANEXO MEU PORTFÓLIO, DE MANEIRA INTERATIVA E NÃO ORIGINAL PARA ENVIAR AO PRESTAR MEU SERVIÇO, UTILIZO-O DE MANEIRA TEMPORÁRIA PARA QUE EU MELHORE CONSTANTEMENTE ATÉ SE TORNAR O PRINCIPAL
 
-Um sistema inovador para gerenciamento de biblioteca pessoal, desenvolvido com HTML,CSS,JS, umas partes em python e MySQL (mas para correr do Workbench o backend foi migrado para o firebase, aonde atualmente prefiro alocar meus projetos).
+Um sistema inovador para gerenciamento de biblioteca pessoal, desenvolvido com HTML,CSS,JS,bastante typescript... e umas partes em python e MySQL (mas para correr do Workbench o backend foi migrado para o firebase, aonde atualmente prefiro alocar meus projetos).
 
 ## Sobre o Desenvolvedor
 
